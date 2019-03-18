@@ -60,6 +60,10 @@ results/results.tsv: $(MAIN_BIN) data/dv_bounds.tsv data/training_data.tsv data/
 test: $(TEST_BIN)
 	$(TEST_BIN)
 
+.PHONY: doc
+doc:
+	doxygen
+
 .PHONY: clean
 clean:
 	$(RM) -r $(BIN)

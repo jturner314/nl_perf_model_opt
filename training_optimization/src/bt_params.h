@@ -53,7 +53,7 @@ typedef struct bt_params_t {
  * The returned pointer must be freed with bt_params_free().
  *
  * @param[in] path Path where the input file is located.
- * @returns A pointer to the parameters.
+ * @returns A pointer to the parameters, or `NULL` on failure.
  */
 bt_params_t *bt_params_load(const char *path);
 

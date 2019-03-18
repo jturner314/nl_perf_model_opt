@@ -15,27 +15,42 @@
  * <https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt>.
  */
 
+/**
+ * @file bt_trials.h
+ *
+ * Trial indices information and related functions.
+ */
+
 #pragma once
 
-/*
- * Represents the data from a trial indices file.
- *
- * This specifies the indices of the performance values within the training
- * data file that should be fit during optimization.
+/**
+ * The indices of the performance values within the training data that should
+ * be fit during optimization.
  */
 typedef struct bt_trials_t {
+    /**
+     * Number of trial indices.
+     */
     size_t size;
+    /**
+     * Array of trial indices.
+     */
     size_t *trial_indices;
 } bt_trials_t;
 
-/*
- * Reads the trial indices from the specified path.
+/**
+ * Reads the trial indices from the file located at @p path.
  *
- * The resulting pointer must be freed with `bt_trials_free`.
+ * The returned pointer must be freed with bt_trials_free().
+ *
+ * @param[in] path Path where the input file is located.
+ * @returns A pointer to the trial indices, or `NULL` on failure.
  */
 bt_trials_t *bt_trials_load(const char *path);
 
-/*
- * Frees a pointer allocated by `bt_trials_load`.
+/**
+ * Frees trial indices allocated by bt_trials_load().
+ *
+ * @param[in] data Trial indices to free.
  */
 void bt_trials_free(bt_trials_t *data);

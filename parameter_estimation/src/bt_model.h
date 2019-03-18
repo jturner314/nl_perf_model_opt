@@ -15,15 +15,24 @@
  * <https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt>.
  */
 
+/**
+ * @file bt_model.h
+ *
+ * Nonlinear model and objective function.
+ */
+
 #pragma once
 
 #include "bt_data.h"
 #include "bt_trials.h"
 #include "ga.h"
 
+/**
+ * Count of design variables.
+ */
 #define DESIGN_VAR_COUNT 9
 
-/*
+/**
  * Enum mapping design variable names to indices.
  */
 enum bt_design_var_index {
@@ -38,49 +47,70 @@ enum bt_design_var_index {
     VAR_U0 = 8
 };
 
-/*
+/**
  * Array of the names of the design variables.
  */
 extern const char *bt_design_var_names[DESIGN_VAR_COUNT];
 
-/*
- * Returns the index corresponding to the design variable with the specified
- * name (ignoring case).
+/**
+ * Finds the index corresponding to the design variable with the given @p name
+ * (ignoring case).
  *
- * Returns -1 if the name is invalid.
+ * @param[in] name The name of the design variable to find.
+ * @returns The index corresponding to the design variable, or -1 if the name
+ *   is invalid.
  */
 int bt_model_design_var_name_to_index(const char *name);
 
-/*
+/**
  * Writes the designs in tab-separated-value format to the stream.
  *
- * If `mean_abs_residuals` is not a null pointer, writes that data as the last
- * column.
+ * @param[in,out] stream The stream to write to.
+ * @param[in] nmemb The number of designs.
+ * @param[in] designs The array of designs.
+ * @param[in] mean_abs_residuals (Optional) An array of the mean absolute
+ *   residuals. If this is not `NULL`, the residuals are written as the last
+ *   column in the file.
  */
 void bt_model_fprint_designs(FILE *stream, const size_t nmemb,
                              const design_var_t designs[][DESIGN_VAR_COUNT],
                              const fitness_t mean_abs_residuals[]);
 
-/*
- * Integrates the model, using the `design` (initial conditions and parameters)
- * in `design`, and writes the results to `data`.
+/**
+ * Integrates the nonlinear model, writing the performance values to @p data.
+ *
+ * @param[in] design Initial conditions and parameters.
+ * @param[in,out] data Time and training stress inputs and performance output.
  */
 void bt_model_integrate(const design_var_t design[DESIGN_VAR_COUNT],
                         bt_data_t *data);
 
-/*
- * Calculates the total absolute error between the data and the model at the
- * specified trial indices, using the specified `design` (initial conditions
- * and parameters).
+/**
+ * Calculates the total absolute residual between the data and the model at the
+ * specified trial indices.
+ *
+ * @param[in] design Initial conditions and parameters for the model.
+ * @param[in] data Training data.
+ * @param[in] trials Indices in the training data to compute the residual
+ *   between the model and the data.
+ * @returns The total absolute residual.
  */
 fitness_t bt_model_calculate_error(const design_var_t design[DESIGN_VAR_COUNT],
                                    const bt_data_t *data, const bt_trials_t *trials);
 
-/*
- * Updates the fitnesses and mean absolute residuals corresponding to the designs.
+/**
+ * Updates the objective function values and mean absolute residuals
+ * corresponding to the designs.
  *
- * If `fitnesses` is a null pointer, it is ignored. If `mean_abs_residuals` is
- * a null pointer, it is ignored.
+ * @param[in] nmemb The number of designs.
+ * @param[in] designs The array of designs.
+ * @param[out] fitnesses (Optional) The array to write the objective function
+ *   values. If this is `NULL`, it is ignored.
+ * @param[out] mean_abs_residuals (Optional) The array to write the mean
+ *   absolute residuals. If this is `NULL`, it is ignored.
+ * @param[in] data Training data.
+ * @param[in] trials Indices in the training data to compute the residual
+ *   between the model and the data.
  */
 void bt_model_update_fitnesses(const size_t nmemb,
                                const design_var_t designs[][DESIGN_VAR_COUNT],

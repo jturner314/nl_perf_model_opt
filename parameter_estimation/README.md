@@ -58,6 +58,16 @@ instability), etc. The results will not be numerically identical to those from
 algorithms for licensing reasons; however, they should have the same
 distribution.
 
+## Documentation
+
+Run
+
+```sh
+make doc
+```
+
+to generate Doxygen documentation of the implementation.
+
 ## License
 
 See the `COPYING` file in this directory.
