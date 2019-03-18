@@ -17,7 +17,6 @@
 
 #pragma once
 
-#include "bt_data.h"
 #include "bt_model.h"
 
 /*
@@ -35,7 +34,7 @@ typedef struct {
  *
  * The resulting pointer must be freed with `bt_bounds_free`.
  */
-bt_design_bounds_t *bt_bounds_load(const char *path, const bt_data_t *bt_data);
+bt_design_bounds_t *bt_bounds_load(const char *path);
 
 /*
  * Writes the design variable info to the given stream.

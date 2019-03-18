@@ -369,7 +369,7 @@ int main(int argc, char *argv[])
             bt_trials[i] = bt_trials[0];
     }
     bt_design_bounds_t *bt_design_bounds;
-    if ((bt_design_bounds = bt_bounds_load(args.bounds_path, bt_data)) == NULL)
+    if ((bt_design_bounds = bt_bounds_load(args.bounds_path)) == NULL)
         fail("Unable to parse bounds file.\n");
     if (args.debug) {
         fprintf(stderr, "Using bounds:\n");

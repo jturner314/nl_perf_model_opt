@@ -20,9 +20,7 @@
 #include "bt_bounds.h"
 
 
-static int bt_bounds_parse_line(const char *line,
-                                const bt_data_t *bt_data,
-                                bt_design_bounds_t *bounds)
+static int bt_bounds_parse_line(const char *line, bt_design_bounds_t *bounds)
 {
     char *var_name = NULL;
     design_var_t lower_bound = 0;
@@ -47,7 +45,7 @@ static int bt_bounds_parse_line(const char *line,
 }
 
 
-bt_design_bounds_t *bt_bounds_load(const char *path, const bt_data_t *bt_data)
+bt_design_bounds_t *bt_bounds_load(const char *path)
 {
     bt_design_bounds_t *bounds = calloc(1, sizeof(bt_design_bounds_t));
 
@@ -61,7 +59,7 @@ bt_design_bounds_t *bt_bounds_load(const char *path, const bt_data_t *bt_data)
 
     // Read data
     while (getline(&line, &length, file) != -1) {
-        if (bt_bounds_parse_line(line, bt_data, bounds) != 0) {
+        if (bt_bounds_parse_line(line, bounds) != 0) {
             fprintf(stderr, "Error: Unable to parse line '%s'.\n", line);
             return NULL;
         }
