@@ -103,6 +103,9 @@ void bt_data_write(FILE *stream, const bt_data_t *data)
 
 void bt_data_free(bt_data_t *data)
 {
+    if (data == NULL)
+        return;
+
     free(data->time);
     free(data->performance);
     free(data->training_stress);

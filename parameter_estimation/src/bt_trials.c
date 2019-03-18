@@ -72,6 +72,9 @@ bt_trials_t *bt_trials_load(const char *path)
 
 void bt_trials_free(bt_trials_t *trials)
 {
+    if (trials == NULL)
+        return;
+
     free(trials->trial_indices);
     free(trials);
 }

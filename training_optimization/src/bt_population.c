@@ -78,6 +78,9 @@ void bt_population_write(FILE *stream, const bt_population_t *population)
 
 void bt_population_free(bt_population_t *population)
 {
+    if (population == NULL)
+        return;
+
     free(population->stresses[0]);
     free(population->stresses);
     free(population->final_performances);
