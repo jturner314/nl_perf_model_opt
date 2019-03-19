@@ -21,15 +21,32 @@ performance data" section of the paper.
 
 ## Building
 
-I haven't made much effort to ensure portability. At a minimum, the program
-should run on Linux with glibc. To build the program, you need GNU Make and a
-C99 compiler that supports OpenMP.
+To build the program, you need GNU Make and a C99 compiler. OpenMP is required
+if you want multithreading for better performance. Build using
 
-Build with
+* Linux with glibc and OpenMP:
 
-```sh
-make
-```
+  ```sh
+  make
+  ```
+
+* Linux with glibc and without OpenMP:
+
+  ```sh
+  make CFLAGS='-Wall -std=c99 -D_GNU_SOURCE -g -O3' LDFLAGS='-lm'
+  ```
+
+* macOS with OpenMP (untested):
+
+  ```sh
+  make CFLAGS='-Wall -std=c99 -fopenmp -D_GNU_SOURCE -g -O3 -DMAC_OSX'
+  ```
+
+* macOS without OpenMP (untested):
+
+  ```sh
+  make CFLAGS='-Wall -std=c99 -D_GNU_SOURCE -g -O3 -DMAC_OSX' LDFLAGS='-lm'
+  ```
 
 ## Usage
 
