@@ -36,10 +36,11 @@ static int bt_bounds_parse_line(const char *line, bt_design_bounds_t *bounds)
         return 1;
     }
 
-    size_t index;
-    if ((index = bt_model_design_var_name_to_index(var_name)) == -1)
-        return 1;
+    const size_t index = bt_model_design_var_name_to_index(var_name);
     free(var_name);
+    if (index == -1) {
+        return 1;
+    }
 
     bounds->lower_bounds[index] = lower_bound;
     bounds->upper_bounds[index] = upper_bound;
