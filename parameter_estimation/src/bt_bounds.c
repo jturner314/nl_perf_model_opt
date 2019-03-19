@@ -19,15 +19,19 @@
 #include <stdlib.h>
 #include "bt_bounds.h"
 
+#define str(x) #x
+#define expand(x) str(x)
+
 
 static int bt_bounds_parse_line(const char *line, bt_design_bounds_t *bounds)
 {
-    char *var_name = NULL;
     design_var_t lower_bound = 0;
     design_var_t upper_bound = 0;
     design_var_t stdev = 0;
 
-    if (sscanf(line, "%ms %lf %lf %lf", &var_name, &lower_bound, &upper_bound, &stdev) != 4) {
+    char *var_name = calloc(MAX_DESIGN_VAR_NAME_LENGTH + 1, 1);
+    if (sscanf(line, "%"expand(MAX_DESIGN_VAR_NAME_LENGTH)"s %lf %lf %lf",
+               var_name, &lower_bound, &upper_bound, &stdev) != 4) {
         free(var_name);
         return 1;
     }

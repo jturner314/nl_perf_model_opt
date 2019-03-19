@@ -37,7 +37,13 @@ void stats_sort(double data[], const size_t n)
     qsort(data, n, sizeof(double), compare_doubles);
 }
 
-int compare_indices_by_data(const void *first, const void *second, void *data)
+static int compare_indices_by_data(
+#ifdef MAC_OSX
+    void *data, const void *first, const void *second
+#else
+    const void *first, const void *second, void *data
+#endif
+)
 {
     // Cast types and dereference indices.
     const size_t i1 = *((size_t *) first);
@@ -65,7 +71,13 @@ void stats_sort_index(size_t indices[], const double data[], const size_t n)
     // const. This is safe because `qsort_r` doesn't modify the data in this
     // case (since `compare_indices_by_data` doesn't modify the data).
     double *non_const_data = (double *) data;
-    qsort_r(indices, n, sizeof(size_t), compare_indices_by_data, non_const_data);
+    qsort_r(indices, n, sizeof(size_t),
+#ifdef MAC_OSX
+            non_const_data, compare_indices_by_data
+#else
+            compare_indices_by_data, non_const_data
+#endif
+    );
 }
 
 double stats_median_from_sorted(const double data[], const size_t n)

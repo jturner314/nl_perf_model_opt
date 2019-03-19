@@ -33,6 +33,12 @@
 #define DESIGN_VAR_COUNT 9
 
 /**
+ * Maximum length of any design variable name, excluding the terminating null
+ * byte.
+ */
+#define MAX_DESIGN_VAR_NAME_LENGTH 5
+
+/**
  * Enum mapping design variable names to indices.
  */
 enum bt_design_var_index {
