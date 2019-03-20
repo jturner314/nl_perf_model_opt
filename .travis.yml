@@ -1,9 +1,23 @@
 language: c
-compiler:
-  - clang
-  - gcc
-env:
-  - OMP_NUM_THREADS=4
+matrix:
+  include:
+    - name: "Linux with GCC and OpenMP"
+      os: linux
+      compiler: gcc
+      env:
+        - OMP_NUM_THREADS=4
+    - name: "Linux with Clang but not OpenMP"
+      os: linux
+      compiler: clang
+      env:
+        - CFLAGS='-Wall -std=c99 -D_GNU_SOURCE -g -O3'
+        - LDFLAGS='-lm'
+    - name: "OS X with Clang but not OpenMP"
+      os: osx
+      compiler: clang
+      env:
+        - CFLAGS='-Wall -std=c99 -D_GNU_SOURCE -g -O3 -DMAC_OSX'
+        - LDFLAGS='-lm'
 script: |
   cd parameter_estimation &&
   make &&
