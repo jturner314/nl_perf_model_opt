@@ -15,10 +15,9 @@
  * <https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt>.
  */
 
-#include <stdio.h>
+#include "bt_trials.h"
 #include <stdlib.h>
 #include <string.h>
-#include "bt_trials.h"
 
 
 static int bt_trials_parse_line(const char *line, bt_trials_t *trials) {

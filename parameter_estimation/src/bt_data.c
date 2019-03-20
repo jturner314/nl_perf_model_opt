@@ -15,10 +15,9 @@
  * <https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt>.
  */
 
-#include <stdio.h>
+#include "bt_data.h"
 #include <stdlib.h>
 #include <string.h>
-#include "bt_data.h"
 
 
 static int bt_data_parse_line(const char *line, bt_data_t *data) {

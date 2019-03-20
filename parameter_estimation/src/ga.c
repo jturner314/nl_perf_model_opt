@@ -15,14 +15,12 @@
  * <https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt>.
  */
 
-#include <assert.h>
-#include <float.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "ga.h"
 #include "randomkit.h"
 #include "stats.h"
+#include <assert.h>
+#include <stdlib.h>
+#include <string.h>
 
 
 void init_random_population(const size_t nmemb, const size_t design_var_count,

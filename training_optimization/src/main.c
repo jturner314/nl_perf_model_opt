@@ -15,18 +15,16 @@
  * <https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt>.
  */
 
-#include <assert.h>
-#include <float.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "args.h"
 #include "bt_model.h"
 #include "bt_params.h"
 #include "bt_population.h"
 #include "bt_ga.h"
 #include "stats.h"
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 
 #define MAX_PATH_LENGTH 1000

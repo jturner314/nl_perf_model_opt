@@ -23,6 +23,9 @@
 
 #pragma once
 
+#include <stdbool.h>
+#include <stdio.h>
+
 /**
  * Command line arguments.
  */

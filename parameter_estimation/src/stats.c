@@ -15,9 +15,9 @@
  * <https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt>.
  */
 
+#include "stats.h"
 #include <math.h>
 #include <stdlib.h>
-#include "stats.h"
 
 static int compare_doubles(const void *first, const void *second)
 {

@@ -25,6 +25,7 @@
 
 #include "bt_params.h"
 #include "bt_population.h"
+#include <stdio.h>
 
 /**
  * Writes the result of integrating the nonlinear model.

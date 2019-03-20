@@ -15,10 +15,10 @@
  * <https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt>.
  */
 
-#include <stdlib.h>
-#include <string.h>
 #include "bt_population.h"
 #include "stats.h"
+#include <stdlib.h>
+#include <string.h>
 
 
 bt_population_t *bt_population_alloc(const size_t nmemb, const size_t num_days)

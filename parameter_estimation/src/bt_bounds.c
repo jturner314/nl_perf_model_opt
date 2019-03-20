@@ -15,9 +15,8 @@
  * <https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt>.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "bt_bounds.h"
+#include <stdlib.h>
 
 #define str(x) #x
 #define expand(x) str(x)

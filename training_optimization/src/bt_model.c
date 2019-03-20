@@ -15,14 +15,9 @@
  * <https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt>.
  */
 
-#include <assert.h>
-#include <stdio.h>
-#include <math.h>
-#include <stdio.h>
-#include <string.h>
-#include <strings.h>
-#include "bt_constraints.h"
 #include "bt_model.h"
+#include "bt_constraints.h"
+#include <math.h>
 
 
 #define DAY_LENGTH 1
