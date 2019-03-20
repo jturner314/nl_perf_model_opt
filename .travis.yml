@@ -1,0 +1,12 @@
+language: c
+compiler:
+  - clang
+  - gcc
+env:
+  - OMP_NUM_THREADS=4
+script: |
+  cd parameter_estimation &&
+  make &&
+  make test &&
+  cd ../training_optimization &&
+  make
