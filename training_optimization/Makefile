@@ -13,11 +13,10 @@
 # along with this program. If not, see
 # <https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt>.
 
-CC = gcc
-CFLAGS = -Wall -std=c99 -fopenmp -D_GNU_SOURCE -D__USE_MINGW_ANSI_STDIO -g -O3
-LDFLAGS = -lm -lgomp
-MAKEFLAGS = --warn-undefined-variables
-MKDIR = mkdir
+CFLAGS ?= -Wall -std=c99 -fopenmp -D_GNU_SOURCE -D__USE_MINGW_ANSI_STDIO -g -O3
+LDFLAGS ?= -lm -lgomp
+MKDIR ?= mkdir
+MAKEFLAGS ?= --warn-undefined-variables
 
 SRC = src
 BIN = bin
