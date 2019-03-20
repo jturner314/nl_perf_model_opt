@@ -15,14 +15,13 @@
  * <https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt>.
  */
 
+#include "bt_ga.h"
+#include "bt_model.h"
+#include "stats.h"
 #include <assert.h>
-#include <float.h>
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
-#include "bt_model.h"
-#include "bt_ga.h"
-#include "stats.h"
 
 
 void ga_init_stresses(const size_t nmemb, const size_t num_days,

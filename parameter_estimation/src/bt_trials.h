@@ -23,6 +23,8 @@
 
 #pragma once
 
+#include <stdio.h>
+
 /**
  * The indices of the performance values within the training data that should
  * be fit during optimization.

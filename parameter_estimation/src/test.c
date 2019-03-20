@@ -15,11 +15,11 @@
  * <https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt>.
  */
 
+#include "stats.h"
 #include <assert.h>
 #include <math.h>
 #include <stdbool.h>
 #include <stdio.h>
-#include "stats.h"
 
 bool approx_eq(const double a, const double b, const double eps)
 {

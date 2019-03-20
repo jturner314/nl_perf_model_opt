@@ -25,6 +25,7 @@
 #pragma once
 
 #include "bt_model.h"
+#include <stdio.h>
 
 /**
  * The bounds of the design variables for initial population generation and the

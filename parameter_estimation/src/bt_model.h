@@ -26,6 +26,7 @@
 #include "bt_data.h"
 #include "bt_trials.h"
 #include "ga.h"
+#include <stdio.h>
 
 /**
  * Count of design variables.

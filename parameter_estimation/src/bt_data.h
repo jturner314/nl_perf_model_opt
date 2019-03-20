@@ -24,6 +24,8 @@
 
 #pragma once
 
+#include <stdio.h>
+
 /**
  * Represents the training data.
  *

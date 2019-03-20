@@ -29,6 +29,7 @@
 #pragma once
 
 #include "bt_population.h"
+#include <stdio.h>
 
 /**
  * Updates the penalty value.

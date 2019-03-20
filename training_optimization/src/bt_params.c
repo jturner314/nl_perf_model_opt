@@ -15,10 +15,10 @@
  * <https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt>.
  */
 
+#include "bt_params.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "bt_params.h"
 
 
 /**

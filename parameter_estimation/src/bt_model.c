@@ -15,12 +15,10 @@
  * <https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt>.
  */
 
-#include <stdio.h>
+#include "bt_model.h"
 #include <math.h>
-#include <stdio.h>
 #include <string.h>
 #include <strings.h>
-#include "bt_model.h"
 
 
 const char *bt_design_var_names[DESIGN_VAR_COUNT] = {

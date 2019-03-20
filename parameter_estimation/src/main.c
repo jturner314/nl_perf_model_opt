@@ -15,12 +15,6 @@
  * <https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt>.
  */
 
-#include <getopt.h>
-#include <stdarg.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "bt_bounds.h"
 #include "bt_data.h"
 #include "bt_trials.h"
@@ -28,6 +22,12 @@
 #include "ga.h"
 #include "randomkit.h"
 #include "stats.h"
+#include <getopt.h>
+#include <stdarg.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 
 #define MAX_PATH_LENGTH 1000

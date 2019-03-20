@@ -15,12 +15,10 @@
  * <https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt>.
  */
 
-#include <getopt.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include "bt_model.h"
 #include "args.h"
+#include "bt_model.h"
+#include <getopt.h>
+#include <stdlib.h>
 
 
 void usage(const char *program_name)

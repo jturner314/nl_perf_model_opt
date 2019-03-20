@@ -24,6 +24,7 @@
 #pragma once
 
 #include "randomkit.h"
+#include <stdio.h>
 
 /**
  * Type of design variable values.
