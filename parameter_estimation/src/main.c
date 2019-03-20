@@ -63,45 +63,48 @@ void fail(const char *format, ...)
 
 static void usage(const char *program_name)
 {
-    fprintf(stderr, "Usage:\n");
-    fprintf(stderr, "  %s [OPTION...] BOUNDS_PATH DATA_PATH TRIALS_PATH OUTPUT_PATH\n", program_name);
-    fprintf(stderr, "\n");
-    fprintf(stderr, "Positional arguments:\n");
-    fprintf(stderr, "  BOUNDS_PATH  Path to file with bounds and stdevs for model parameters.\n");
-    fprintf(stderr, "  DATA_PATH    Path to file with training test data.\n");
-    fprintf(stderr, "  TRIALS_PATH  Path to file with the indices of the performance trials. If a\n");
-    fprintf(stderr, "                 '%%' char is in the string, then it is treated as a pattern\n");
-    fprintf(stderr, "                 where the input is the iteration number.\n");
-    fprintf(stderr, "  OUTPUT_PATH  Path to output file for writing optimal designs.\n");
-    fprintf(stderr, "\n");
-    fprintf(stderr, "Options:\n");
-    fprintf(stderr, "  -nCOUNT, --num-iterations=COUNT     Number of iterations of the genetic\n");
-    fprintf(stderr, "                                         algorithm.\n");
-    fprintf(stderr, "  -gCOUNT, --max-generations=COUNT    Maximum number of generations.\n");
-    fprintf(stderr, "  -pCOUNT, --population-size=COUNT    Number of individuals in each generation.\n");
-    fprintf(stderr, "  -kCOUNT, --cull-keep=COUNT          Number of individuals from the previous\n");
-    fprintf(stderr, "                                         generation to keep when culling.\n");
-    fprintf(stderr, "  -mFLOAT, --mutate-probability=FLOAT Probability of mutating each design\n");
-    fprintf(stderr, "                                         variable.\n");
-    fprintf(stderr, "  -aFLOAT, --blx-alpha=FLOAT          Alpha to use for BLX-alpha crossover.\n");
-    fprintf(stderr, "  -i[PATTERN], --output-integration[=PATTERN]\n");
-    fprintf(stderr, "                                      Output the integration of the best design\n");
-    fprintf(stderr, "                                        from each iteration. PATTERN specifies\n");
-    fprintf(stderr, "                                        the names of the files, where %%zd is\n");
-    fprintf(stderr, "                                        replaced by the iteration number.\n");
-    fprintf(stderr, "  -w[PATTERN], --output-population[=PATTERN]\n");
-    fprintf(stderr, "                                      Output the final population from each\n");
-    fprintf(stderr, "                                        iteration. PATTERN specifies the names\n");
-    fprintf(stderr, "                                        of the files, where %%zd is replaced by\n");
-    fprintf(stderr, "                                        the iteration number.\n");
-    fprintf(stderr, "  -c[PATTERN], --output-convergence[=PATTERN]\n");
-    fprintf(stderr, "                                      Output the fitness quartiles of each\n");
-    fprintf(stderr, "                                        generation from each iteration. PATTERN\n");
-    fprintf(stderr, "                                        specifies the names of the files, where\n");
-    fprintf(stderr, "                                        %%zd is replaced by the iteration\n");
-    fprintf(stderr, "                                        number.\n");
-    fprintf(stderr, "  -d, --debug                         Show debug output.\n");
-    fprintf(stderr, "  -h, --help                          Show this message.\n");
+    fprintf(
+        stderr,
+        "Usage:\n"
+        "  %s [OPTION...] BOUNDS_PATH DATA_PATH TRIALS_PATH OUTPUT_PATH\n"
+        "\n"
+        "Positional arguments:\n"
+        "  BOUNDS_PATH  Path to file with bounds and stdevs for model parameters.\n"
+        "  DATA_PATH    Path to file with training test data.\n"
+        "  TRIALS_PATH  Path to file with the indices of the performance trials. If a\n"
+        "                 '%%' char is in the string, then it is treated as a pattern\n"
+        "                 where the input is the iteration number.\n"
+        "  OUTPUT_PATH  Path to output file for writing optimal designs.\n"
+        "\n"
+        "Options:\n"
+        "  -nCOUNT, --num-iterations=COUNT     Number of iterations of the genetic\n"
+        "                                         algorithm.\n"
+        "  -gCOUNT, --max-generations=COUNT    Maximum number of generations.\n"
+        "  -pCOUNT, --population-size=COUNT    Number of individuals in each generation.\n"
+        "  -kCOUNT, --cull-keep=COUNT          Number of individuals from the previous\n"
+        "                                         generation to keep when culling.\n"
+        "  -mFLOAT, --mutate-probability=FLOAT Probability of mutating each design\n"
+        "                                         variable.\n"
+        "  -aFLOAT, --blx-alpha=FLOAT          Alpha to use for BLX-alpha crossover.\n"
+        "  -i[PATTERN], --output-integration[=PATTERN]\n"
+        "                                      Output the integration of the best design\n"
+        "                                        from each iteration. PATTERN specifies\n"
+        "                                        the names of the files, where %%zd is\n"
+        "                                        replaced by the iteration number.\n"
+        "  -w[PATTERN], --output-population[=PATTERN]\n"
+        "                                      Output the final population from each\n"
+        "                                        iteration. PATTERN specifies the names\n"
+        "                                        of the files, where %%zd is replaced by\n"
+        "                                        the iteration number.\n"
+        "  -c[PATTERN], --output-convergence[=PATTERN]\n"
+        "                                      Output the fitness quartiles of each\n"
+        "                                        generation from each iteration. PATTERN\n"
+        "                                        specifies the names of the files, where\n"
+        "                                        %%zd is replaced by the iteration\n"
+        "                                        number.\n"
+        "  -d, --debug                         Show debug output.\n"
+        "  -h, --help                          Show this message.\n",
+        program_name);
     exit(EXIT_FAILURE);
 }
 

@@ -25,71 +25,75 @@
 
 void usage(const char *program_name)
 {
-    fprintf(stderr, "Usage:\n");
-    fprintf(stderr, "  %s [OPTION...] PARAMS_PATH OUTPUT_PATH\n", program_name);
-    fprintf(stderr, "\n");
-    fprintf(stderr, "Positional arguments:\n");
-    fprintf(stderr, "  PARAMS_PATH  Path to file with the values of the model parameters.\n");
-    fprintf(stderr, "  OUTPUT_PATH  Path to output file for writing optimal designs.\n");
-    fprintf(stderr, "\n");
-    fprintf(stderr, "Objective function:\n");
-    fprintf(stderr, "  -fCOUNT, --num-days=COUNT               Number of training days.\n");
-    fprintf(stderr, "  -yFLOAT, --max-daily-stress=FLOAT       Maximum stress per day.\n");
-    fprintf(stderr, "  -rFLOAT, --init-penalty-factor=FLOAT    Initial penalty factor.\n");
-    fprintf(stderr, "  -tFLOAT, --penalty-factor-rate=FLOAT    Rate of exponential increase in\n");
-    fprintf(stderr, "                                            penalty factor for each generation.\n");
-    fprintf(stderr, "  -oFLOAT, --max-roughness-factor=FLOAT   Maximum roughness penalty factor.\n");
-    fprintf(stderr, "\n");
-    fprintf(stderr, "Genetic algorithm:\n");
-    fprintf(stderr, "  -nCOUNT, --num-iterations=COUNT     Number of iterations of the genetic\n");
-    fprintf(stderr, "                                         algorithm.\n");
-    fprintf(stderr, "  -gCOUNT, --max-generations=COUNT    Maximum number of generations.\n");
-    fprintf(stderr, "  -zCOUNT, --population-size=COUNT    Number of individuals in each generation.\n");
-    fprintf(stderr, "  -kCOUNT, --cull-keep=COUNT          Number of individuals from the previous\n");
-    fprintf(stderr, "                                        generation to keep when culling.\n");
-    fprintf(stderr, "  -aFLOAT, --init-blx-alpha=FLOAT     Initial alpha to use for BLX-alpha\n");
-    fprintf(stderr, "                                        crossover.\n");
-    fprintf(stderr, "  -sFLOAT, --blx-alpha-change-rate=FLOAT\n");
-    fprintf(stderr, "                                      Rate of exponential change in alpha for\n");
-    fprintf(stderr, "                                        each generation.\n");
-    fprintf(stderr, "  -mFLOAT, --init-mutate-stdev=FLOAT  Initial standard deviation to use for\n");
-    fprintf(stderr, "                                        mutation of stress values.\n");
-    fprintf(stderr, "  -lFLOAT, --init-mutate-probability=FLOAT\n");
-    fprintf(stderr, "                                      Initial probability of mutating any\n");
-    fprintf(stderr, "                                        particular stress value.\n");
-    fprintf(stderr, "  -wFLOAT, --mutate-change-rate=FLOAT Rate of exponential change in\n");
-    fprintf(stderr, "                                        mutation parameters for each generation.\n");
-    fprintf(stderr, "\n");
-    fprintf(stderr, "Extra output:\n");
-    fprintf(stderr, "  -i[PATTERN], --output-integration[=PATTERN]\n");
-    fprintf(stderr, "                                      Output the integration of the best design\n");
-    fprintf(stderr, "                                        from each iteration. PATTERN specifies\n");
-    fprintf(stderr, "                                        the names of the files, where %%zd is\n");
-    fprintf(stderr, "                                        replaced by the iteration number.\n");
-    fprintf(stderr, "  -p[PATTERN], --output-population[=PATTERN]\n");
-    fprintf(stderr, "                                      Output the final population from each\n");
-    fprintf(stderr, "                                        iteration. PATTERN specifies the names\n");
-    fprintf(stderr, "                                        of the files, where %%zd is replaced by\n");
-    fprintf(stderr, "                                        the iteration number.\n");
-    fprintf(stderr, "  -c[PATTERN], --output-convergence[=PATTERN]\n");
-    fprintf(stderr, "                                      Output the fitness quartiles of each\n");
-    fprintf(stderr, "                                        generation from each iteration. PATTERN\n");
-    fprintf(stderr, "                                        specifies the names of the files, where\n");
-    fprintf(stderr, "                                        %%zd is replaced by the iteration\n");
-    fprintf(stderr, "                                        number.\n");
-    fprintf(stderr, "\n");
-    fprintf(stderr, "Help:\n");
-    fprintf(stderr, "  -d, --debug                         Show debug output.\n");
-    fprintf(stderr, "  -h, --help                          Show this message.\n");
+    fprintf(
+        stderr,
+        "Usage:\n"
+        "  %s [OPTION...] PARAMS_PATH OUTPUT_PATH\n"
+        "\n"
+        "Positional arguments:\n"
+        "  PARAMS_PATH  Path to file with the values of the model parameters.\n"
+        "  OUTPUT_PATH  Path to output file for writing optimal designs.\n"
+        "\n"
+        "Objective function:\n"
+        "  -fCOUNT, --num-days=COUNT               Number of training days.\n"
+        "  -yFLOAT, --max-daily-stress=FLOAT       Maximum stress per day.\n"
+        "  -rFLOAT, --init-penalty-factor=FLOAT    Initial penalty factor.\n"
+        "  -tFLOAT, --penalty-factor-rate=FLOAT    Rate of exponential increase in\n"
+        "                                            penalty factor for each generation.\n"
+        "  -oFLOAT, --max-roughness-factor=FLOAT   Maximum roughness penalty factor.\n"
+        "\n"
+        "Genetic algorithm:\n"
+        "  -nCOUNT, --num-iterations=COUNT     Number of iterations of the genetic\n"
+        "                                         algorithm.\n"
+        "  -gCOUNT, --max-generations=COUNT    Maximum number of generations.\n"
+        "  -zCOUNT, --population-size=COUNT    Number of individuals in each generation.\n"
+        "  -kCOUNT, --cull-keep=COUNT          Number of individuals from the previous\n"
+        "                                        generation to keep when culling.\n"
+        "  -aFLOAT, --init-blx-alpha=FLOAT     Initial alpha to use for BLX-alpha\n"
+        "                                        crossover.\n"
+        "  -sFLOAT, --blx-alpha-change-rate=FLOAT\n"
+        "                                      Rate of exponential change in alpha for\n"
+        "                                        each generation.\n"
+        "  -mFLOAT, --init-mutate-stdev=FLOAT  Initial standard deviation to use for\n"
+        "                                        mutation of stress values.\n"
+        "  -lFLOAT, --init-mutate-probability=FLOAT\n"
+        "                                      Initial probability of mutating any\n"
+        "                                        particular stress value.\n"
+        "  -wFLOAT, --mutate-change-rate=FLOAT Rate of exponential change in\n"
+        "                                        mutation parameters for each generation.\n"
+        "\n"
+        "Extra output:\n"
+        "  -i[PATTERN], --output-integration[=PATTERN]\n"
+        "                                      Output the integration of the best design\n"
+        "                                        from each iteration. PATTERN specifies\n"
+        "                                        the names of the files, where %%zd is\n"
+        "                                        replaced by the iteration number.\n"
+        "  -p[PATTERN], --output-population[=PATTERN]\n"
+        "                                      Output the final population from each\n"
+        "                                        iteration. PATTERN specifies the names\n"
+        "                                        of the files, where %%zd is replaced by\n"
+        "                                        the iteration number.\n"
+        "  -c[PATTERN], --output-convergence[=PATTERN]\n"
+        "                                      Output the fitness quartiles of each\n"
+        "                                        generation from each iteration. PATTERN\n"
+        "                                        specifies the names of the files, where\n"
+        "                                        %%zd is replaced by the iteration\n"
+        "                                        number.\n"
+        "\n"
+        "Help:\n"
+        "  -d, --debug                         Show debug output.\n"
+        "  -h, --help                          Show this message.\n",
+        program_name);
     exit(EXIT_FAILURE);
 }
 
 
 void help(const char *program_name) {
-    fprintf(stderr, "This program designs a training routine that maximizes performance at the end of\n");
-    fprintf(stderr, "the last training day (equivalently, the beginning of the day after the last\n");
-    fprintf(stderr, "training day).");
-    fprintf(stderr, "\n");
+    fprintf(
+        stderr,
+        "This program designs a training routine that maximizes performance at the end of\n"
+        "the last training day (equivalently, the beginning of the day after the last\n"
+        "training day).\n");
     usage(program_name);
 }
 
