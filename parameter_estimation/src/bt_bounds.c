@@ -25,19 +25,17 @@
 
 static int bt_bounds_parse_line(const char *line, bt_design_bounds_t *bounds)
 {
-    char *var_name = calloc(MAX_DESIGN_VAR_NAME_LENGTH + 1, 1);
+    char var_name[MAX_DESIGN_VAR_NAME_LENGTH + 1] = { 0 };
     design_var_t lower_bound = 0;
     design_var_t upper_bound = 0;
     design_var_t stdev = 0;
 
     if (sscanf(line, "%"expand(MAX_DESIGN_VAR_NAME_LENGTH)"s %lf %lf %lf",
                var_name, &lower_bound, &upper_bound, &stdev) != 4) {
-        free(var_name);
         return 1;
     }
 
     const size_t index = bt_model_design_var_name_to_index(var_name);
-    free(var_name);
     if (index == -1) {
         return 1;
     }

@@ -34,12 +34,11 @@
 
 static int bt_params_parse_line(const char *line, bt_params_t *parameters)
 {
-    char *name = calloc(MAX_DESIGN_VAR_NAME_LENGTH + 1, 1);;
+    char name[MAX_DESIGN_VAR_NAME_LENGTH + 1] = { 0 };
     param_t value = 0;
 
     if (sscanf(line, "%"expand(MAX_DESIGN_VAR_NAME_LENGTH)"s %lf",
                name, &value) != 2) {
-        free(name);
         return 1;
     }
 
@@ -62,10 +61,8 @@ static int bt_params_parse_line(const char *line, bt_params_t *parameters)
     } else if (strcmp("u0", name) == 0) {
         parameters->u0 = value;
     } else {
-        free(name);
         return 1;
     }
-    free(name);
 
     return 0;
 }
