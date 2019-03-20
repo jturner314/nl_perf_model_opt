@@ -28,11 +28,6 @@ static int bt_trials_parse_line(const char *line, bt_trials_t *trials) {
 
 bt_trials_t *bt_trials_load(const char *path)
 {
-    // Allocate memory
-    size_t capacity = 1000;
-    bt_trials_t *trials = calloc(1, sizeof(bt_trials_t));
-    trials->trial_indices = malloc(capacity * sizeof(size_t));
-
     // Open file
     FILE *file;
     if ((file = fopen(path, "r")) == NULL)
@@ -41,7 +36,16 @@ bt_trials_t *bt_trials_load(const char *path)
     size_t length = 0;
 
     // Skip header line
-    getline(&line, &length, file);
+    if (getline(&line, &length, file) == -1) {
+        free(line);
+        fclose(file);
+        return NULL;
+    }
+
+    // Allocate memory
+    size_t capacity = 1000;
+    bt_trials_t *trials = calloc(1, sizeof(bt_trials_t));
+    trials->trial_indices = malloc(capacity * sizeof(size_t));
 
     // Read trials
     while (getline(&line, &length, file) != -1) {
@@ -54,6 +58,9 @@ bt_trials_t *bt_trials_load(const char *path)
         // Parse line
         if (bt_trials_parse_line(line, trials) != 0) {
             fprintf(stderr, "Unable to parse line '%s'.\n", line);
+            free(line);
+            fclose(file);
+            bt_trials_free(trials);
             return NULL;
         }
         trials->size++;

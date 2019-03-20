@@ -73,20 +73,30 @@ static int bt_params_parse_line(const char *line, bt_params_t *parameters)
 
 bt_params_t *bt_params_load(const char *path)
 {
-    bt_params_t *parameters = calloc(1, sizeof(bt_params_t));
-
     // Open file
-    FILE *file = fopen(path, "r");
+    FILE *file;
+    if ((file = fopen(path, "r")) == NULL)
+        return NULL;
     char *line = NULL;
     size_t length = 0;
 
     // Skip header line
-    getline(&line, &length, file);
+    if (getline(&line, &length, file) == -1) {
+        free(line);
+        fclose(file);
+        return NULL;
+    }
+
+    // Allocate memory
+    bt_params_t *parameters = calloc(1, sizeof(bt_params_t));
 
     // Read data
     while (getline(&line, &length, file) != -1) {
         if (bt_params_parse_line(line, parameters) != 0) {
             fprintf(stderr, "Error: Unable to parse line '%s'.\n", line);
+            free(line);
+            fclose(file);
+            bt_params_free(parameters);
             return NULL;
         }
     }

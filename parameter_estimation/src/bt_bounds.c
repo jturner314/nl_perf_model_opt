@@ -52,20 +52,30 @@ static int bt_bounds_parse_line(const char *line, bt_design_bounds_t *bounds)
 
 bt_design_bounds_t *bt_bounds_load(const char *path)
 {
-    bt_design_bounds_t *bounds = calloc(1, sizeof(bt_design_bounds_t));
-
     // Open file
-    FILE *file = fopen(path, "r");
+    FILE *file;
+    if ((file = fopen(path, "r")) == NULL)
+        return NULL;
     char *line = NULL;
     size_t length = 0;
 
     // Skip header line
-    getline(&line, &length, file);
+    if (getline(&line, &length, file) == -1) {
+        free(line);
+        fclose(file);
+        return NULL;
+    }
+
+    // Allocate memory
+    bt_design_bounds_t *bounds = calloc(1, sizeof(bt_design_bounds_t));
 
     // Read data
     while (getline(&line, &length, file) != -1) {
         if (bt_bounds_parse_line(line, bounds) != 0) {
             fprintf(stderr, "Error: Unable to parse line '%s'.\n", line);
+            free(line);
+            fclose(file);
+            bt_bounds_free(bounds);
             return NULL;
         }
     }
