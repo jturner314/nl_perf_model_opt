@@ -31,20 +31,26 @@ static int bt_data_parse_line(const char *line, bt_data_t *data) {
 
 bt_data_t *bt_data_load(const char *path)
 {
+    // Open file
+    FILE *file;
+    if ((file = fopen(path, "r")) == NULL)
+        return NULL;
+    char *line = NULL;
+    size_t length = 0;
+
+    // Skip header line
+    if (getline(&line, &length, file) == -1) {
+        free(line);
+        fclose(file);
+        return NULL;
+    }
+
     // Allocate memory
     size_t capacity = 1000;
     bt_data_t *data = calloc(1, sizeof(bt_data_t));
     data->time = malloc(capacity * sizeof(double));
     data->performance = malloc(capacity * sizeof(double));
     data->training_stress = malloc(capacity * sizeof(double));
-
-    // Open file
-    FILE *file = fopen(path, "r");
-    char *line = NULL;
-    size_t length = 0;
-
-    // Skip header line
-    getline(&line, &length, file);
 
     // Read data
     while (getline(&line, &length, file) != -1) {
@@ -59,6 +65,9 @@ bt_data_t *bt_data_load(const char *path)
         // Parse line
         if (bt_data_parse_line(line, data) != 0) {
             fprintf(stderr, "Unable to parse line '%s'.\n", line);
+            free(line);
+            fclose(file);
+            bt_data_free(data);
             return NULL;
         }
         data->size++;
