@@ -85,11 +85,16 @@ void ga_tournament_select(const size_t nmemb, const fitness_t fitnesses[],
  * @param[out] children The population of children to generate.
  * @param[in] alpha The alpha parameter to use for BLX-alpha crossover.
  * @param[in,out] rng The state of the PRNG.
+ *
+ * @note Ideally, @p population would be defined as `const design_var_t (*const
+ * population)[design_var_count]`, but due to limitations in the C standard,
+ * that would require callers to make an explicit cast. [See RATIONALE for more
+ * information.](http://pubs.opengroup.org/onlinepubs/9699919799/functions/exec.html)
  */
 void ga_blx_alpha(const size_t nmemb, const size_t design_var_count,
-                  const design_var_t population[][design_var_count],
+                  design_var_t (*const population)[design_var_count],
                   const size_t parent_indices[],
-                  design_var_t children[][design_var_count],
+                  design_var_t (*children)[design_var_count],
                   const double alpha,
                   rk_state *rng);
 
@@ -130,13 +135,18 @@ void ga_mutate(const size_t nmemb, const size_t design_var_count,
  * @param[in] child_designs The population of children.
  * @param[in] child_fitnesses The objective function values of the child
  *   population.
+ *
+ * @note Ideally, @p child_designs would be defined as `const design_var_t
+ * (*const child_designs)[design_var_count]`, but due to limitations in the C
+ * standard, that would require callers to make an explicit cast. [See
+ * RATIONALE for more information.](http://pubs.opengroup.org/onlinepubs/9699919799/functions/exec.html)
  */
 void ga_cull(const size_t nmemb,
              const size_t design_var_count,
-             design_var_t designs[][design_var_count],
+             design_var_t (*designs)[design_var_count],
              fitness_t fitnesses[],
              const size_t num_keep,
-             const design_var_t child_designs[][design_var_count],
+             design_var_t (*const child_designs)[design_var_count],
              fitness_t child_fitnesses[]);
 
 /**

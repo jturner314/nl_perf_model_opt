@@ -48,7 +48,7 @@ void ga_tournament_select(const size_t nmemb, const fitness_t fitnesses[],
 
 
 void ga_blx_alpha(const size_t nmemb, const size_t design_var_count,
-                  stress_t **population,
+                  stress_t *const *const population,
                   const size_t parent_indices[],
                   double **children,
                   const double alpha,

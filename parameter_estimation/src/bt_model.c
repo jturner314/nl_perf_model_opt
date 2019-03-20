@@ -45,7 +45,7 @@ int bt_model_design_var_name_to_index(const char *name) {
 
 
 void bt_model_fprint_designs(FILE *stream, const size_t nmemb,
-                             const design_var_t designs[][DESIGN_VAR_COUNT],
+                             design_var_t (*const designs)[DESIGN_VAR_COUNT],
                              const fitness_t mean_abs_residuals[])
 {
     // Header
@@ -155,7 +155,7 @@ fitness_t bt_model_calculate_error(const design_var_t design[DESIGN_VAR_COUNT],
 
 
 void bt_model_update_fitnesses(const size_t nmemb,
-                               const design_var_t designs[][DESIGN_VAR_COUNT],
+                               design_var_t (*const designs)[DESIGN_VAR_COUNT],
                                fitness_t fitnesses[],
                                fitness_t mean_abs_residuals[],
                                const bt_data_t *data,

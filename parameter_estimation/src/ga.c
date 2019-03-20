@@ -51,9 +51,9 @@ void ga_tournament_select(const size_t nmemb, const fitness_t fitnesses[],
 }
 
 void ga_blx_alpha(const size_t nmemb, const size_t design_var_count,
-                  const design_var_t population[][design_var_count],
+                  design_var_t (*const population)[design_var_count],
                   const size_t parent_indices[],
-                  design_var_t children[][design_var_count],
+                  design_var_t (*children)[design_var_count],
                   const double alpha,
                   rk_state *rng)
 {
@@ -90,10 +90,10 @@ static int compare_size_t(const void *first, const void *second)
 
 void ga_cull(const size_t nmemb,
              const size_t design_var_count,
-             design_var_t designs[][design_var_count],
+             design_var_t (*designs)[design_var_count],
              fitness_t fitnesses[],
              const size_t num_keep,
-             const design_var_t child_designs[][design_var_count],
+             design_var_t (*const child_designs)[design_var_count],
              fitness_t child_fitnesses[])
 {
     assert(num_keep <= nmemb);

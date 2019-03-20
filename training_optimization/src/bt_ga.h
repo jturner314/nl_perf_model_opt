@@ -71,9 +71,14 @@ void ga_tournament_select(const size_t nmemb, const fitness_t fitnesses[],
  * @param[in] max The upper bound for any design variable value (values are
  *   clipped to this).
  * @param[in,out] rng The state of the PRNG.
+ *
+ * @note Ideally, @p population would be defined as `const stress_t *const
+ * *const population`, but due to limitations in the C standard, that would
+ * require callers to make an explicit cast. [See RATIONALE for more
+ * information.](http://pubs.opengroup.org/onlinepubs/9699919799/functions/exec.html)
  */
 void ga_blx_alpha(const size_t nmemb, const size_t design_var_count,
-                  stress_t **population,
+                  stress_t *const *const population,
                   const size_t parent_indices[],
                   double **children,
                   const double alpha,
