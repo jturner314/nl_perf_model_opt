@@ -42,7 +42,7 @@ if you want multithreading for better performance. Build using
   make CFLAGS='-Wall -std=c99 -fopenmp -D_GNU_SOURCE -g -O3 -DMAC_OSX'
   ```
 
-* macOS without OpenMP (untested):
+* macOS without OpenMP:
 
   ```sh
   make CFLAGS='-Wall -std=c99 -D_GNU_SOURCE -g -O3 -DMAC_OSX' LDFLAGS='-lm'
